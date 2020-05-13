@@ -21,7 +21,7 @@ We additionally specify `3` as the `k` parameter for the `k`-Nearest Neighbor al
 
 ## Motivataion
 
-Most machine learning models assume that they will be trained over datasets that are ***complete***. In other words, they assume that all values are provided. However, due to the nature of data collection, it is often the case that some values in our datasets are unknown, thus making our datasets ***incomplete***. The problem of answering queries over such datasets has been studied in the database field for decades. Specifically, it was shown that sometimes it is possible to give ***certain answers*** to some specific queries in spite of having incomplete data. In this work, we apply a similar notions to machine learning models and develop methods to determine when we can make ***certain predictions*** for class labels when trained over incomplete datasets.
+Most machine learning models assume that they will be trained over datasets that are ***complete***. In other words, they assume that all values are provided. However, due to the nature of data collection, it is often the case that some values in our datasets are unknown, thus making our datasets ***incomplete***. The problem of answering queries over such datasets has been studied in the database field for decades. Specifically, it was shown that sometimes it is possible to give ***certain answers*** to some specific queries in spite of having incomplete data. In this work, we apply a similar notion to machine learning models and develop methods to determine when we can make ***certain predictions*** for class labels when trained over incomplete datasets.
 
 ## Method Summary
 
