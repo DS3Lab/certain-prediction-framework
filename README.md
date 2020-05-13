@@ -19,6 +19,10 @@ Here, `[Q]` should be replaced with either `q1` or `q2` for the checking and cou
 
 We additionally specify `3` as the `k` parameter for the `k`-Nearest Neighbor algorithm (default is `1`). Running `./cpf.py -h` displays a listing of all command-line arguments.
 
+## Motivataion
+
+Most machine learning models assume that they will be trained over datasets that are ***complete***. In other words, they assume that all values are provided. However, due to the nature of data collection, it is often the case that some values in our datasets are unknown, thus making our datasets ***incomplete***. The problem of answering queries over such datasets has been studied in the database field for decades. Specifically, it was shown that sometimes it is possible to give ***certain answers*** to some specific queries in spite of having incomplete data. In this work, we apply a similar notions to machine learning models and develop methods to determine when we can make ***certain predictions*** for class labels when trained over incomplete datasets.
+
 ## Method Summary
 
 ![certain-predictions](etc/certain-predictions.png)
@@ -57,3 +61,20 @@ Test examples are given as a single-line CSV file (i.e. without a column header)
 ```
 
 It must have one column less than the training dataset which would correspond to the label column. The column order is assumed to be the same as the training dataset.
+
+## Probability Mode for Q2
+
+By default, the counting algorithm works in the regular "counting" mode, which means it computes the count of possible worlds that support a given label being predicted. However, it is also possible to assume a probability distribution over all possible worlds, and compute the probability of a given label being predicted. Given that this probability is merely a sum of the probabilities of all possible worlds that would predict that label, we can see how these two notions are equivalent.
+
+To answer Q2 in probability mode, simply append the `--prob-mode` flag when running `cpf.py`. By default, all candidates from a single domain are assumed to have equal probability. However, it is possible to explicitly define probabilities of candidates. To do this, simply append a *weight* to each candidate value, separated by a tilde sign `~`. Here is an example dataset in CSV format:
+
+```csv
+a,b[1~0.3|2~0.2|3~0.5],c
+0,,1
+1,2,2
+1,[2~0.7|3~0.3],3
+0,2,4
+0,,5
+```
+
+Weights are converted to probabilities by normalizing them so they sum up to `1.0`. If a weight is omitted, it is assumed to have value `1.0`.
